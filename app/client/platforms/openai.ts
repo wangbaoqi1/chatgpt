@@ -1,13 +1,13 @@
 import { REQUEST_TIMEOUT_MS } from "@/app/constant";
 import { useAccessStore, useAppConfig, useChatStore } from "@/app/store";
-
-import { ChatOptions, getHeaders, LLMApi, LLMUsage } from "../api";
-import Locale from "../../locales";
+import { prettyObject } from "@/app/utils/format";
 import {
   EventStreamContentType,
-  fetchEventSource,
+  fetchEventSource
 } from "@fortaine/fetch-event-source";
-import { prettyObject } from "@/app/utils/format";
+import Locale from "../../locales";
+import { ChatOptions, getHeaders, LLMApi, LLMUsage } from "../api";
+
 
 export class ChatGPTApi implements LLMApi {
   public ChatPath = "v1/chat/completions";
@@ -55,7 +55,8 @@ export class ChatGPTApi implements LLMApi {
     options.onController?.(controller);
 
     try {
-      const chatPath = this.path(this.ChatPath);
+      // const chatPath = this.path(this.ChatPath);
+      const chatPath = 'https://ai.devtool.tech/proxy/v1/chat/completions';
       const chatPayload = {
         method: "POST",
         body: JSON.stringify(requestPayload),
@@ -109,7 +110,7 @@ export class ChatGPTApi implements LLMApi {
               try {
                 const resJson = await res.clone().json();
                 extraInfo = prettyObject(resJson);
-              } catch {}
+              } catch { }
 
               if (res.status === 401) {
                 responseTexts.push(Locale.Error.Unauthorized);

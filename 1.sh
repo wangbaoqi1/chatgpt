@@ -7,7 +7,7 @@ ps -ef | grep "yarn" | grep -v grep | awk '{print $2}' | xargs kill -9
 
 #step1  初始化代码
 cd /data/ && rm -rf ./chatgpt-web
-git clone git@gitee.com:aduer_zx/chatgpt-web.git
+git clone git@github.com:wangbaoqi1/chatgpt.git
 
 #step2 代码构建
 cd /data/chatgpt-web && yarn && yarn build
