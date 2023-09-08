@@ -1,8 +1,7 @@
 import { NextRequest } from "next/server";
-import { getServerSideConfig } from "../config/server";
 import md5 from "spark-md5";
+import { getServerSideConfig } from "../config/server";
 import { ACCESS_CODE_PREFIX } from "../constant";
-import { OPENAI_URL } from "./common";
 
 function getIP(req: NextRequest) {
   let ip = req.ip ?? req.headers.get("x-real-ip");
@@ -25,9 +24,9 @@ function parseApiKey(bearToken: string) {
   };
 }
 
-export function auth(req: NextRequest,skipCustomKey=true) {
+export function auth(req: NextRequest, skipCustomKey = true) {
   const authToken = req.headers.get("Authorization") ?? req.nextUrl.searchParams.get("Authorization") ?? "";
-
+  console.log(authToken, '11111111119090');
   // check if it is openai api key or user token
   const { accessCode, apiKey: token } = parseApiKey(authToken);
 
@@ -41,7 +40,7 @@ export function auth(req: NextRequest,skipCustomKey=true) {
   console.log("[Time] ", new Date().toLocaleString());
 
   if (serverConfig.needCode && !serverConfig.codes.has(hashedCode)) {
-    if(!token || !skipCustomKey){
+    if (!token || !skipCustomKey) {
       return {
         error: true,
         msg: !accessCode ? "empty access code" : "wrong access code",

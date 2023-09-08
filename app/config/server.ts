@@ -35,7 +35,7 @@ export const getServerSideConfig = () => {
   }
 
   return {
-    apiKey: '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',
+    apiKey: '',
     code: process.env.CODE,
     codes: ACCESS_CODES,
     needCode: ACCESS_CODES.size > 0,
