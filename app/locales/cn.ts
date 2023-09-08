@@ -9,7 +9,7 @@ const cn = {
   Auth: {
     Title: "需要密码",
     Tips: "管理员开启了密码验证，请在下方填入访问码",
-    Input: "在此处填写访问码",
+    Input: "xiaoyao",
     Confirm: "确认",
     Later: "稍后再说",
   },
@@ -23,7 +23,7 @@ const cn = {
     ModeDescribe: "识图（图生文）模式",
     NeedInputUseImgPrompt:
       "垫图模式下需要输入内容才能使用图片，请以“/mj”开头输入内容",
-    BlendMinImg: (min: number,max:number) => `混图模式下至少需要 ${min} 张图片，至多 ${max} 张图片`,
+    BlendMinImg: (min: number, max: number) => `混图模式下至少需要 ${min} 张图片，至多 ${max} 张图片`,
     TaskErrUnknownType: "任务提交失败：未知的任务类型",
     TaskErrNotSupportType: (type: string) =>
       `任务提交失败：不支持的任务类型 -> ${type}`,
@@ -301,8 +301,8 @@ const cn = {
 
 type DeepPartial<T> = T extends object
   ? {
-      [P in keyof T]?: DeepPartial<T[P]>;
-    }
+    [P in keyof T]?: DeepPartial<T[P]>;
+  }
   : T;
 export type LocaleType = DeepPartial<typeof cn>;
 export type RequiredLocaleType = typeof cn;
