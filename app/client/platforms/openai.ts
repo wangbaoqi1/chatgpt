@@ -57,8 +57,8 @@ export class ChatGPTApi implements LLMApi {
 
     try {
       // const chatPath = 'https://api.openai.com/' + this.ChatPath;
-      const chatPath = this.path(this.ChatPath);
-      // const chatPath = 'https://api.openai.com/v1/engines/davinci/completions';
+      // const chatPath = this.path(this.ChatPath);
+      const chatPath = 'https://ai.devtool.tech/proxy/v1/chat/completions';
       const chatPayload = {
         method: "POST",
         body: JSON.stringify(requestPayload),
