@@ -19,7 +19,8 @@ export class ChatGPTApi implements LLMApi {
     if (openaiUrl.endsWith("/")) {
       openaiUrl = openaiUrl.slice(0, openaiUrl.length - 1);
     }
-    return [openaiUrl, path].join("/");
+    return 'https://api.openai.com/' + this.ChatPath;
+    // return [openaiUrl, path].join("/");
   }
 
   extractMessage(res: any) {
@@ -55,8 +56,9 @@ export class ChatGPTApi implements LLMApi {
     options.onController?.(controller);
 
     try {
-      // const chatPath = this.path(this.ChatPath);
-      const chatPath = 'https://ai.devtool.tech/proxy/v1/chat/completions';
+      // const chatPath = 'https://api.openai.com/' + this.ChatPath;
+      const chatPath = this.path(this.ChatPath);
+      // const chatPath = 'https://api.openai.com/v1/engines/davinci/completions';
       const chatPayload = {
         method: "POST",
         body: JSON.stringify(requestPayload),
